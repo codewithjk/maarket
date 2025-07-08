@@ -85,7 +85,7 @@ export const handleForgotPassword = async (req: Request, res: Response, next: Ne
         await trackOtpRequests(email, next);
 
         //Generate OTP and send email
-        await sendOtp(email, user.name, userType === "user" ? "forgot-password-user-mail" : "forgot-password-seller-mail");
+        await sendOtp(user.name, email, userType === "user" ? "forgot-password-user-mail" : "forgot-password-seller-mail");
         res.status(200).json({ message: "OTP is sent to email. Please verify your account." });
     } catch (error) {
          next(error)
